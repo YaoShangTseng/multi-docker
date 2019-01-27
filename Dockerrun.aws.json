@@ -1,0 +1,29 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [{
+        "name": "client",
+        "image": "yakushou730/multi-client",
+        "hostname": "client",
+        "essential": false
+    }, {
+        "name": "server",
+        "image": "yakushou730/multi-server",
+        "hostname": "api",
+        "essential": false
+    }, {
+        "name": "worker",
+        "image": "yakushou730/multi-worker",
+        "hostname": "worker",
+        "essential": false
+    }, {
+        "name": "nginx",
+        "image": "yakushou730/multi-nginx",
+        "hostname": "nginx",
+        "essential": true,
+        "portMappings": [{
+            "hostPort": 80,
+            "containerPort": 80
+        }],
+        "links": ["client", "server"]
+    }]
+}
